@@ -358,8 +358,11 @@ class Easemob {
 		}
 		curl_setopt ( $curl, CURLOPT_TIMEOUT, 30 ); // 设置超时限制防止死循环
 		// curl_setopt ( $curl, CURLOPT_HTTPHEADER, $header ); // 设置HTTP头
+
+		//如果希望获得内容但不输出,使用 CURLOPT_RETURNTRANSFER参数,并设为非0值/true
+		//获取的信息以文件流的形式返回，而不是直接输出
 		curl_setopt ( $curl, CURLOPT_RETURNTRANSFER, 1 ); // 获取的信息以文件流的形式返回
-		curl_setopt ( $curl, CURLOPT_CUSTOMREQUEST, $type );
+		curl_setopt ( $curl, CURLOPT_CUSTOMREQUEST, $type ); //自定义请求方式
 		$result = curl_exec ( $curl ); // 执行操作
 		// $res = object_array ( json_decode ( $result,true ) );
 		// $res ['status'] = curl_getinfo ( $curl, CURLINFO_HTTP_CODE );
