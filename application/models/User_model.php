@@ -86,7 +86,10 @@ class User_model extends CI_Model {
             'userName' => $name
         );
         $this->db->where($wheres);
-      return  $this->db->update('userinfo ', $data);
+        if($this->db->update('userinfo ', $data)){
+            $query = $this->db->get_where('userinfo', $wheres);
+            return $query->row_array();
+        }
     }
 
 
